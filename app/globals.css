@@ -2,9 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .glass-card {
+    @apply bg-black/40 backdrop-blur-md border border-white/10;
+  }
+  .red-glow {
+    box-shadow: 0 0 30px rgba(229, 0, 0, 0.25);
+  }
+  .section {
+    @apply scroll-mt-24 md:scroll-mt-28;
   }
 }
 
