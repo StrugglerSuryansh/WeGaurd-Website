@@ -119,7 +119,7 @@ export default function LandingPage() {
             className="absolute inset-0 will-change-transform"
           >
             <Image
-              src="https://images.unsplash.com/photo-1558395716-1a5c0e41ee9e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://images.unsplash.com/photo-1547355332-c590834bbbb4?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D  "
               alt="Professional security presence with cityscape at night"
               fill
               priority
