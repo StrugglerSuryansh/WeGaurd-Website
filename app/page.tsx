@@ -4,7 +4,7 @@ import type React from "react"
 
 import Link from "next/link"
 import Image from "next/image"
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -30,9 +30,41 @@ const stagger = {
   },
 }
 
+//yaha pe maine form ka connection banaya hai bro
 export default function LandingPage() {
   const shouldReduceMotion = useReducedMotion()
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    serviceType: "",
+    contactTime: ""
+  });
+
+  const handleChange = (e: { target: { name: any; value: any } }) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbwYjwZt3Aw4EHv7zw_ytQHZN0q2EVE8iX4PrfaUjdGbHxGK5i8fjL4DrN2UcGlNWA3e/exec", {
+        method: "POST",
+        body: JSON.stringify(formData)
+      });
+      alert("Form submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        serviceType: "",
+        contactTime: ""
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
   // Scroll-based parallax for hero
   const { scrollY } = useScroll()
   const yParallax = useTransform(scrollY, [0, 400], [0, 80])
@@ -87,7 +119,7 @@ export default function LandingPage() {
             className="absolute inset-0 will-change-transform"
           >
             <Image
-              src="/images/hero-background.png"
+              src="https://images.unsplash.com/photo-1558395716-1a5c0e41ee9e?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Professional security presence with cityscape at night"
               fill
               priority
@@ -313,53 +345,57 @@ export default function LandingPage() {
               </p>
             </motion.div>
 
+
+            {/* yaha pe maine google form attach kiya hua hai */}
             <motion.form
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.25 }}
-              variants={stagger}
               className="mt-12 max-w-lg mx-auto space-y-6 bg-gray-900/80 border border-weguard-red/30 rounded-lg p-8 shadow-2xl"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
               aria-label="Get My Free Quote"
             >
-              <motion.div variants={fadeIn} className="text-left">
-                <label htmlFor="name" className="sr-only">
-                  Name
-                </label>
+              <motion.div className="text-left">
                 <Input
                   id="name"
                   name="name"
                   type="text"
                   placeholder="Name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-weguard-red"
                 />
               </motion.div>
-              <motion.div variants={fadeIn} className="text-left">
-                <label htmlFor="email" className="sr-only">
-                  Email
-                </label>
+
+              <motion.div className="text-left">
                 <Input
                   id="email"
                   name="email"
                   type="email"
                   placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-weguard-red"
                 />
               </motion.div>
-              <motion.div variants={fadeIn} className="text-left">
-                <label htmlFor="phone" className="sr-only">
-                  Phone
-                </label>
+
+              <motion.div className="text-left">
                 <Input
                   id="phone"
                   name="phone"
                   type="tel"
                   placeholder="Phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-weguard-red"
                 />
               </motion.div>
-              <motion.div variants={fadeIn}>
-                <Select>
+
+              <motion.div>
+                <Select
+                  value={formData.serviceType}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, serviceType: value }))}
+                >
                   <SelectTrigger className="w-full bg-gray-800 border-gray-700 text-white focus:ring-weguard-red">
                     <SelectValue placeholder="Type of Service Needed" />
                   </SelectTrigger>
@@ -372,8 +408,12 @@ export default function LandingPage() {
                   </SelectContent>
                 </Select>
               </motion.div>
-              <motion.div variants={fadeIn}>
-                <Select>
+
+              <motion.div>
+                <Select
+                  value={formData.contactTime}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, contactTime: value }))}
+                >
                   <SelectTrigger className="w-full bg-gray-800 border-gray-700 text-white focus:ring-weguard-red">
                     <SelectValue placeholder="Preferred Contact Time" />
                   </SelectTrigger>
@@ -385,7 +425,8 @@ export default function LandingPage() {
                   </SelectContent>
                 </Select>
               </motion.div>
-              <motion.div variants={fadeIn}>
+
+              <motion.div>
                 <Button
                   type="submit"
                   className="w-full bg-weguard-red hover:bg-weguard-red/90 text-white text-lg py-3 rounded-md shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] red-glow"
@@ -394,6 +435,7 @@ export default function LandingPage() {
                 </Button>
               </motion.div>
             </motion.form>
+
           </div>
         </section>
 
@@ -489,9 +531,9 @@ export default function LandingPage() {
               <motion.a
                 variants={fadeIn}
                 href="tel:123-456-7890"
-                className="inline-flex items-center justify-center gap-3 bg-weguard-red hover:bg-weguard-red/90 text-white text-xl px-8 py-4 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.03] red-glow"
+                className="flex flex-col items-center justify-center gap-3  bg-weguard-red hover:bg-weguard-red/90 text-white text-xl px-8 py-4 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.03] red-glow"
               >
-                <Phone className="h-6 w-6" aria-hidden="true" /> Call Us 24/7: (123) 456-7890
+                Call Us 24/7: (123) 456-7890
               </motion.a>
               <motion.p variants={fadeIn} className="text-lg text-gray-300">
                 Or chat live with a security advisor at the bottom right
