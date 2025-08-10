@@ -53,8 +53,9 @@ export default function LandingPage() {
         aria-label="Main header"
       >
         <Link href="#top" className="flex items-center gap-2" aria-label="WeGuard Home">
-          <ShieldCheck className="h-8 w-8 text-weguard-red" />
-          <span className="text-2xl font-bold text-white">WeGuard</span>
+          {/* <ShieldCheck className="h-8 w-8 text-weguard-red" />
+          <span className="text-2xl font-bold text-white">WeGuard</span> */}
+          <img src="logo.svg" alt="" height={200} width={200} />
         </Link>
         <nav className="hidden md:flex gap-6" aria-label="Primary">
           <Link href="#why-choose-us" className="text-sm font-medium hover:text-weguard-red transition-colors">
@@ -505,8 +506,9 @@ export default function LandingPage() {
       <footer className="bg-weguard-dark py-12 border-t border-weguard-red/40">
         <div className="container px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-8 w-8 text-weguard-red" aria-hidden="true" />
-            <span className="text-2xl font-bold">WeGuard</span>
+            {/* <ShieldCheck className="h-8 w-8 text-weguard-red" aria-hidden="true" /> */}
+            <span className="text-2xl font-bold"></span>
+            <img src="logo.svg" alt="" height={400} width={200} />
           </div>
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-gray-400 text-sm">
             <Link href="#" className="hover:text-weguard-red transition-colors">
