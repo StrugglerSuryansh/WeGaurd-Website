@@ -53,7 +53,6 @@ export default function LandingPage() {
         method: "POST",
         body: JSON.stringify(formData)
       });
-      alert("Form submitted successfully!");
       setFormData({
         name: "",
         email: "",
@@ -427,12 +426,14 @@ export default function LandingPage() {
               </motion.div>
 
               <motion.div>
-                <Button
-                  type="submit"
-                  className="w-full bg-weguard-red hover:bg-weguard-red/90 text-white text-lg py-3 rounded-md shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] red-glow"
-                >
-                  Get My Free Quote
-                </Button>
+                <a href="/thank-you">
+                  <Button
+                    type="submit"
+                    className="w-full bg-weguard-red hover:bg-weguard-red/90 text-white text-lg py-3 rounded-md shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] red-glow"
+                  >                  Get My Free Quote
+                  </Button>
+                </a>
+
               </motion.div>
             </motion.form>
 
