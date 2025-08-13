@@ -118,7 +118,7 @@ export default function LandingPage() {
             className="absolute inset-0 will-change-transform"
           >
             <Image
-              src="https://images.unsplash.com/photo-1547355332-c590834bbbb4?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D  "
+              src="securityGuard.jpg"
               alt="Professional security presence with cityscape at night"
               fill
               priority
@@ -426,15 +426,19 @@ export default function LandingPage() {
               </motion.div>
 
               <motion.div>
-                <a href="/thank-you">
-                  <Button
-                    type="submit"
-                    className="w-full bg-weguard-red hover:bg-weguard-red/90 text-white text-lg py-3 rounded-md shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] red-glow"
-                  >                  Get My Free Quote
-                  </Button>
-                </a>
-
+                <Button
+                  type="submit"
+                  className="w-full bg-weguard-red hover:bg-weguard-red/90 text-white text-lg py-3 rounded-md shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02] red-glow"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    // Form submission logic here
+                    window.location.href = "/thank-you";
+                  }}
+                >
+                  Get My Free Quote
+                </Button>
               </motion.div>
+
             </motion.form>
 
           </div>
