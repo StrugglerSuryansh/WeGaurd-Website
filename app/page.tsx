@@ -127,13 +127,15 @@ export default function LandingPage() {
             />
           </motion.div>
 
-          {/* Radial vignette and subtle overlay */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(229,0,0,0.12),transparent_60%)] pointer-events-none" />
+          {/* Radial vignette and darker overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(229,0,0,0.18),transparent_100%)] pointer-events-none" />
+
           <motion.div
-            style={{ opacity: shouldReduceMotion ? 0.2 : overlayOpacity }}
-            className="absolute inset-0 bg-black/40 pointer-events-none"
+            style={{ opacity: shouldReduceMotion ? 0.35 : overlayOpacity }} // increased from 0.2
+            className="absolute inset-0 bg-black/55 pointer-events-none" // was /40
             aria-hidden="true"
           />
+
 
           {/* Content */}
           <motion.div
