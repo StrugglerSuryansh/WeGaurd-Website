@@ -112,7 +112,7 @@ export default function LandingPage() {
       <main id="top" className="pt-16">
         {/* Hero */}
         <section className="relative w-full h-[calc(100vh-64px)] overflow-hidden">
-          {/* Parallax background image */}
+          {/* Parallax background image changes comment */}
           <motion.div
             style={{ y: shouldReduceMotion ? 0 : yParallax }}
             className="absolute inset-0 will-change-transform"
